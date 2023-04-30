@@ -1,0 +1,602 @@
+@prefix : <http://www.semanticweb.org/david/ontologies/2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix license: <http://creativecommons.org/licenses/by/4.0/> .
+@prefix WinesOfSpain: <http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#> .
+@base <http://www.semanticweb.org/david/ontologies/2/> .
+
+<http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain> rdf:type owl:Ontology ;
+                                                                   rdfs:comment """Author: David Dorador
+Date: 30/04/2023
+Version: 1.0""" ;
+                                                                   rdfs:label [ <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by-sa/4.0/"
+                                                                              ] ;
+                                                                   rdfs:seeAlso "https://dbpedia.org/page/Wine" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://creativecommons.org/ns#license
+<http://creativecommons.org/ns#license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/rights
+<http://purl.org/dc/elements/1.1/rights> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#sameAs
+rdfs:sameAs rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#hasCharacteristic
+WinesOfSpain:hasCharacteristic rdf:type owl:ObjectProperty ;
+                               rdfs:domain WinesOfSpain:Wine ;
+                               rdfs:range WinesOfSpain:WineCharacteristics ;
+                               rdfs:comment "This property represents the relationship between a wine and its specific characteristics" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#isAgedIn
+WinesOfSpain:isAgedIn rdf:type owl:ObjectProperty ;
+                      rdfs:domain WinesOfSpain:Wine ;
+                      rdfs:range WinesOfSpain:AgingMethod ;
+                      rdfs:comment "This property represents the relationship between a wine and the location where it has been aged, such as oak barrels, stainless steel tanks, or bottle" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#isClassifiedAs
+WinesOfSpain:isClassifiedAs rdf:type owl:ObjectProperty ;
+                            rdfs:domain WinesOfSpain:Wine ;
+                            rdfs:range WinesOfSpain:WineVariant ;
+                            rdfs:comment "This property represents the relationship between a wine and its classification or category" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#locatedIn
+WinesOfSpain:locatedIn rdf:type owl:ObjectProperty ;
+                       rdfs:domain WinesOfSpain:Winery ;
+                       rdfs:range WinesOfSpain:Region ;
+                       rdfs:comment "This property represents the relationship between a winery and its geographic location" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#producedBy
+WinesOfSpain:producedBy rdf:type owl:ObjectProperty ;
+                        rdfs:domain WinesOfSpain:Wine ;
+                        rdfs:range WinesOfSpain:Winery ;
+                        rdfs:comment "This property represents the relationship between a wine and the winery that produces it" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#producedIn
+WinesOfSpain:producedIn rdf:type owl:ObjectProperty ;
+                        rdfs:domain WinesOfSpain:Wine ;
+                        rdfs:range WinesOfSpain:Region ;
+                        rdfs:comment "This property represents the relationship between a wine and the location where it was produced" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#agingTime
+WinesOfSpain:agingTime rdf:type owl:DatatypeProperty ,
+                                owl:FunctionalProperty ;
+                       rdfs:domain WinesOfSpain:Wine ;
+                       rdfs:range xsd:integer ;
+                       rdfs:comment "This property represents the amount of time in which a wine has been aged" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#hasAlcohol
+WinesOfSpain:hasAlcohol rdf:type owl:DatatypeProperty ;
+                        rdfs:domain WinesOfSpain:Wine ;
+                        rdfs:range xsd:float ;
+                        rdfs:comment "This property represents the percentage of alcohol content in a bottle or unit of wine" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#hasSugar
+WinesOfSpain:hasSugar rdf:type owl:DatatypeProperty ;
+                      rdfs:domain WinesOfSpain:Wine ;
+                      rdfs:range xsd:float ;
+                      rdfs:comment "This property represents the amount of sugar content in g/L" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#hasYearFoundation
+WinesOfSpain:hasYearFoundation rdf:type owl:DatatypeProperty ,
+                                        owl:FunctionalProperty ;
+                               rdfs:domain WinesOfSpain:Winery ;
+                               rdfs:range xsd:integer ;
+                               rdfs:comment "This property represents the year in which a winery was founded" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#productionDay
+WinesOfSpain:productionDay rdf:type owl:DatatypeProperty ,
+                                    owl:FunctionalProperty ;
+                           rdfs:domain WinesOfSpain:Wine ;
+                           rdfs:range xsd:dateTime ;
+                           rdfs:comment "This property represents the day or date on which a wine was produced" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Acidity
+WinesOfSpain:Acidity rdf:type owl:Class ;
+                     rdfs:subClassOf WinesOfSpain:WineCharacteristics ;
+                     rdfs:comment "This class represents the acidity level of a wine, which is an important characteristic that affects its taste and aging potential" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#AgingMethod
+WinesOfSpain:AgingMethod rdf:type owl:Class ;
+                         rdfs:subClassOf WinesOfSpain:WineCharacteristics ;
+                         rdfs:comment "This class represents the amount of time that a wine has been aged in oak barrels or in the bottle, which can have a significant impact on its flavor, aroma, and texture" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Andalusia
+WinesOfSpain:Andalusia rdf:type owl:Class ;
+                       rdfs:subClassOf WinesOfSpain:Region ;
+                       rdfs:comment "This class represents a region in southern Spain" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Average
+WinesOfSpain:Average rdf:type owl:Class ;
+                     rdfs:subClassOf WinesOfSpain:Price ;
+                     rdfs:comment "This class represents a range of prices that is considered to be typical or average for wines" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Body
+WinesOfSpain:Body rdf:type owl:Class ;
+                  rdfs:subClassOf WinesOfSpain:WineCharacteristics ;
+                  rdfs:comment "This class represents the weight and texture of a wine in the mouth, which is influenced by factors such as alcohol content, tannins, and sugar levels" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Catalonia
+WinesOfSpain:Catalonia rdf:type owl:Class ;
+                       rdfs:subClassOf WinesOfSpain:Region ;
+                       rdfs:comment "This class represents a region in northeastern Spain" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Cheap
+WinesOfSpain:Cheap rdf:type owl:Class ;
+                   rdfs:subClassOf WinesOfSpain:Price ;
+                   rdfs:comment "This class represents wines that are priced at or below the lower end of the price range" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#DessertWine
+WinesOfSpain:DessertWine rdf:type owl:Class ;
+                         rdfs:subClassOf WinesOfSpain:WineVariant ;
+                         owl:disjointWith WinesOfSpain:RedWine ,
+                                          WinesOfSpain:RoséWine ,
+                                          WinesOfSpain:SparklingWine ,
+                                          WinesOfSpain:WhiteWine ;
+                         rdfs:comment "This class represents a type of wine that is typically sweet, high in alcohol, and served in small quantities as a dessert accompaniment or after-dinner drink" ;
+                         rdfs:sameAs "https://dbpedia.org/page/Dessert_wine" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Dry
+WinesOfSpain:Dry rdf:type owl:Class ;
+                 rdfs:subClassOf WinesOfSpain:Sugar ;
+                 rdfs:comment "This class represents wines that contain very little or no residual sugar, and are characterized by their crisp, clean, and refreshing taste" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Exclusive
+WinesOfSpain:Exclusive rdf:type owl:Class ;
+                       rdfs:subClassOf WinesOfSpain:Price ;
+                       rdfs:comment "This class represents wines that are priced at or above the upper end of the price range" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Expensive
+WinesOfSpain:Expensive rdf:type owl:Class ;
+                       rdfs:subClassOf WinesOfSpain:Price ;
+                       rdfs:comment "This class represents wines that are priced significantly higher than the average or typical price" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Levante
+WinesOfSpain:Levante rdf:type owl:Class ;
+                     rdfs:subClassOf WinesOfSpain:Region ;
+                     rdfs:comment "This class represents a region in eastern Spain" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#North
+WinesOfSpain:North rdf:type owl:Class ;
+                   rdfs:subClassOf WinesOfSpain:Region ;
+                   rdfs:comment "This class represents a broad geographic region in northern Spain" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Price
+WinesOfSpain:Price rdf:type owl:Class ;
+                   rdfs:subClassOf WinesOfSpain:WineCharacteristics ;
+                   rdfs:comment "This class represents the cost of a bottle of wine, which can vary widely depending on factors such as the winery, region, vintage, and reputation" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#RedWine
+WinesOfSpain:RedWine rdf:type owl:Class ;
+                     rdfs:subClassOf WinesOfSpain:WineVariant ;
+                     owl:disjointWith WinesOfSpain:RoséWine ,
+                                      WinesOfSpain:SparklingWine ,
+                                      WinesOfSpain:WhiteWine ;
+                     rdfs:comment "This class represents a type of wine that is made from red or black grapes and is typically medium- to full-bodied, with flavors and aromas that vary depending on the grape variety, region, and aging process" ;
+                     rdfs:sameAs "http://dbpedia.org/page/Red_wine" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Region
+WinesOfSpain:Region rdf:type owl:Class ;
+                    rdfs:comment "This class represents a geographic area or location that is known for producing wines" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Rioja
+WinesOfSpain:Rioja rdf:type owl:Class ;
+                   rdfs:subClassOf WinesOfSpain:Region ;
+                   rdfs:comment "This class represents a specific wine region in northern Spain" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#RoséWine
+WinesOfSpain:RoséWine rdf:type owl:Class ;
+                      rdfs:subClassOf WinesOfSpain:WineVariant ;
+                      owl:disjointWith WinesOfSpain:SparklingWine ,
+                                       WinesOfSpain:WhiteWine ;
+                      rdfs:comment "This class represents a type of wine that is made from red or black grapes but is only briefly allowed to come into contact with the grape skins, resulting in a pink or salmon color and a lighter, more delicate flavor profile" ;
+                      rdfs:sameAs "https://dbpedia.org/page/Ros%C3%A9" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#SemiDry
+WinesOfSpain:SemiDry rdf:type owl:Class ;
+                     rdfs:subClassOf WinesOfSpain:Sugar ;
+                     rdfs:comment "This class represents wines that contain a moderate amount of residual sugar, and are characterized by their balance of sweetness and acidity" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#SemiSweet
+WinesOfSpain:SemiSweet rdf:type owl:Class ;
+                       rdfs:subClassOf WinesOfSpain:Sugar ;
+                       rdfs:comment "This class represents wines that contain a higher amount of residual sugar than SemiDry wines, and are characterized by their fruity, floral, or honeyed notes" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#SparklingWine
+WinesOfSpain:SparklingWine rdf:type owl:Class ;
+                           rdfs:subClassOf WinesOfSpain:WineVariant ;
+                           owl:disjointWith WinesOfSpain:WhiteWine ;
+                           rdfs:comment "This class represents a type of wine that contains significant levels of carbon dioxide, resulting in bubbles or effervescence, and is typically associated with celebratory occasions or special events" ;
+                           rdfs:sameAs "https://dbpedia.org/page/Sparkling_wine" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Sugar
+WinesOfSpain:Sugar rdf:type owl:Class ;
+                   rdfs:subClassOf WinesOfSpain:WineCharacteristics ;
+                   rdfs:comment "This class represents the amount of residual sugar in a wine, which can affect its sweetness and overall balance of flavors" ;
+                   rdfs:sameAs "https://dbpedia.org/page/Sugars_in_wine" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Sweet
+WinesOfSpain:Sweet rdf:type owl:Class ;
+                   rdfs:subClassOf WinesOfSpain:Sugar ;
+                   rdfs:comment "This class represents wines that contain a significant amount of residual sugar, and are characterized by their intense sweetness and rich, complex flavors" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#WhiteWine
+WinesOfSpain:WhiteWine rdf:type owl:Class ;
+                       rdfs:subClassOf WinesOfSpain:WineVariant ;
+                       rdfs:comment "This class represents a type of wine that is made from white grapes or from red grapes with the skins removed, and is typically light-bodied, crisp, and refreshing" ;
+                       rdfs:sameAs "https://dbpedia.org/page/White_wine" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Wine
+WinesOfSpain:Wine rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty WinesOfSpain:productionDay ;
+                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onDataRange xsd:dateTime
+                                      ] ;
+                  rdfs:comment "This class represents a type of alcoholic beverage that is produced by fermenting grapes" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#WineCharacteristics
+WinesOfSpain:WineCharacteristics rdf:type owl:Class ;
+                                 rdfs:comment "Characteristics of the wine" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#WineVariant
+WinesOfSpain:WineVariant rdf:type owl:Class ;
+                         rdfs:comment "This class represents a specific type or style of wine that is distinguished by its grape variety, geographic origin, production methods, or other unique characteristics" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Winery
+WinesOfSpain:Winery rdf:type owl:Class ;
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty WinesOfSpain:hasYearFoundation ;
+                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onDataRange xsd:integer
+                                    ] ;
+                    rdfs:comment "This class represents a wine-producing company or facility that grows grapes, produces wine, and markets it under its own brand name" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Barrel
+WinesOfSpain:Barrel rdf:type owl:NamedIndividual ,
+                             WinesOfSpain:AgingMethod ;
+                    rdfs:sameAs "https://dbpedia.org/page/Barrel" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Bodega_Jose_Pariente
+WinesOfSpain:Bodega_Jose_Pariente rdf:type owl:NamedIndividual ,
+                                           WinesOfSpain:Winery ;
+                                  WinesOfSpain:locatedIn WinesOfSpain:La_Seca ;
+                                  WinesOfSpain:hasYearFoundation 1960 .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Bottle
+WinesOfSpain:Bottle rdf:type owl:NamedIndividual ,
+                             WinesOfSpain:AgingMethod .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Corpinnat
+WinesOfSpain:Corpinnat rdf:type owl:NamedIndividual ,
+                                WinesOfSpain:Catalonia .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Garnacha
+WinesOfSpain:Garnacha rdf:type owl:NamedIndividual ,
+                               WinesOfSpain:RedWine ;
+                      rdfs:sameAs "https://dbpedia.org/page/Grenache" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Jose_Pariente_Verdejo
+WinesOfSpain:Jose_Pariente_Verdejo rdf:type owl:NamedIndividual ,
+                                            WinesOfSpain:Wine ;
+                                   WinesOfSpain:isAgedIn WinesOfSpain:Bottle ;
+                                   WinesOfSpain:isClassifiedAs WinesOfSpain:Verdejo ;
+                                   WinesOfSpain:producedBy WinesOfSpain:Bodega_Jose_Pariente ;
+                                   WinesOfSpain:producedIn WinesOfSpain:La_Seca ;
+                                   WinesOfSpain:agingTime 100 ;
+                                   WinesOfSpain:hasAlcohol "13.2"^^xsd:float ;
+                                   WinesOfSpain:hasSugar "12.4"^^xsd:float ;
+                                   WinesOfSpain:productionDay "2022-08-01T10:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#La_Montesa
+WinesOfSpain:La_Montesa rdf:type owl:NamedIndividual ,
+                                 WinesOfSpain:Wine ;
+                        WinesOfSpain:isAgedIn WinesOfSpain:Barrel ;
+                        WinesOfSpain:isClassifiedAs WinesOfSpain:Garnacha ;
+                        WinesOfSpain:producedBy WinesOfSpain:Palacios_Redondo ;
+                        WinesOfSpain:producedIn WinesOfSpain:Rioja_Oriental ;
+                        WinesOfSpain:agingTime 367 ;
+                        WinesOfSpain:hasAlcohol "14.5"^^xsd:float ;
+                        WinesOfSpain:hasSugar "30.6"^^xsd:float ;
+                        WinesOfSpain:productionDay "2019-08-17T08:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#La_Seca
+WinesOfSpain:La_Seca rdf:type owl:NamedIndividual ,
+                              WinesOfSpain:North .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Llopart
+WinesOfSpain:Llopart rdf:type owl:NamedIndividual ;
+                     WinesOfSpain:locatedIn WinesOfSpain:Corpinnat ;
+                     WinesOfSpain:hasYearFoundation 1980 .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Llopart_Microcosmos
+WinesOfSpain:Llopart_Microcosmos rdf:type owl:NamedIndividual ,
+                                          WinesOfSpain:Wine ;
+                                 WinesOfSpain:isAgedIn WinesOfSpain:Barrel ;
+                                 WinesOfSpain:isClassifiedAs WinesOfSpain:Pinot_Noir ;
+                                 WinesOfSpain:producedBy WinesOfSpain:Llopart ;
+                                 WinesOfSpain:producedIn WinesOfSpain:Corpinnat ;
+                                 WinesOfSpain:agingTime 720 ;
+                                 WinesOfSpain:hasAlcohol "11.9"^^xsd:float ;
+                                 WinesOfSpain:hasSugar "40.0"^^xsd:float ;
+                                 WinesOfSpain:productionDay "2019-08-10T09:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Palacios_Redondo
+WinesOfSpain:Palacios_Redondo rdf:type owl:NamedIndividual ,
+                                       WinesOfSpain:Winery .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Pinot_Noir
+WinesOfSpain:Pinot_Noir rdf:type owl:NamedIndividual ,
+                                 WinesOfSpain:SparklingWine ;
+                        rdfs:sameAs "https://es.dbpedia.org/page/Pinot_noir" .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Rioja_Oriental
+WinesOfSpain:Rioja_Oriental rdf:type owl:NamedIndividual ,
+                                     WinesOfSpain:Rioja .
+
+
+###  http://www.semanticweb.org/david/ontologies/2023/3/WinesOfSpain#Verdejo
+WinesOfSpain:Verdejo rdf:type owl:NamedIndividual ,
+                              WinesOfSpain:WhiteWine .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+<urn:swrl:var#w> rdf:type swrl:Variable .
+
+<urn:swrl:var#s> rdf:type swrl:Variable .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate WinesOfSpain:Wine ;
+                           swrl:argument1 <urn:swrl:var#w>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                      swrl:builtin swrlb:greaterThanOrEqual ;
+                                      swrl:arguments [ rdf:type rdf:List ;
+                                                       rdf:first <urn:swrl:var#s> ;
+                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                  rdf:first 45 ;
+                                                                  rdf:rest rdf:nil
+                                                                ]
+                                                     ]
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate WinesOfSpain:hasSugar ;
+                                                 swrl:argument1 <urn:swrl:var#w> ;
+                                                 swrl:argument2 <urn:swrl:var#s>
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate WinesOfSpain:Sweet ;
+                           swrl:argument1 <urn:swrl:var#w>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate WinesOfSpain:Wine ;
+                           swrl:argument1 <urn:swrl:var#w>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                      swrl:builtin swrlb:greaterThanOrEqual ;
+                                      swrl:arguments [ rdf:type rdf:List ;
+                                                       rdf:first <urn:swrl:var#s> ;
+                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                  rdf:first 9 ;
+                                                                  rdf:rest rdf:nil
+                                                                ]
+                                                     ]
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                 swrl:builtin swrlb:lessThan ;
+                                                 swrl:arguments [ rdf:type rdf:List ;
+                                                                  rdf:first <urn:swrl:var#s> ;
+                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                             rdf:first 18 ;
+                                                                             rdf:rest rdf:nil
+                                                                           ]
+                                                                ]
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate WinesOfSpain:hasSugar ;
+                                                            swrl:argument1 <urn:swrl:var#w> ;
+                                                            swrl:argument2 <urn:swrl:var#s>
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate WinesOfSpain:SemiDry ;
+                           swrl:argument1 <urn:swrl:var#w>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate WinesOfSpain:Wine ;
+                           swrl:argument1 <urn:swrl:var#w>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                      swrl:builtin swrlb:greaterThanOrEqual ;
+                                      swrl:arguments [ rdf:type rdf:List ;
+                                                       rdf:first <urn:swrl:var#s> ;
+                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                  rdf:first 18 ;
+                                                                  rdf:rest rdf:nil
+                                                                ]
+                                                     ]
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                 swrl:builtin swrlb:lessThan ;
+                                                 swrl:arguments [ rdf:type rdf:List ;
+                                                                  rdf:first <urn:swrl:var#s> ;
+                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                             rdf:first 45 ;
+                                                                             rdf:rest rdf:nil
+                                                                           ]
+                                                                ]
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate WinesOfSpain:hasSugar ;
+                                                            swrl:argument1 <urn:swrl:var#w> ;
+                                                            swrl:argument2 <urn:swrl:var#s>
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate WinesOfSpain:SemiSweet ;
+                           swrl:argument1 <urn:swrl:var#w>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate WinesOfSpain:Wine ;
+                           swrl:argument1 <urn:swrl:var#w>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                      swrl:builtin swrlb:lessThan ;
+                                      swrl:arguments [ rdf:type rdf:List ;
+                                                       rdf:first <urn:swrl:var#s> ;
+                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                  rdf:first 9 ;
+                                                                  rdf:rest rdf:nil
+                                                                ]
+                                                     ]
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate WinesOfSpain:hasSugar ;
+                                                 swrl:argument1 <urn:swrl:var#w> ;
+                                                 swrl:argument2 <urn:swrl:var#s>
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate WinesOfSpain:Dry ;
+                           swrl:argument1 <urn:swrl:var#w>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
